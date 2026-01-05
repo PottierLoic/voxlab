@@ -1,0 +1,6 @@
+server_ip: "IP_ADDRESS"
+domain_name: "DOMAIN_NAME"
+
+pihole_password: "PWD"
+
+base_dir: "/home/vox/voxlab"
