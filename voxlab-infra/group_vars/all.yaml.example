@@ -1,3 +1,4 @@
+ansible_user_name: "ANSIBLE_USERNAME"
 server_ip: "IP_ADDRESS"
 domain_name: "DOMAIN_NAME"
 

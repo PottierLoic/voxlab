@@ -1,0 +1,15 @@
+---
+title: VoxLab Dashboard
+
+base: http://{{ server_ip }}:3000/
+
+hideHost: true
+allowIframe: true
+disableHostname: false
+
+layout:
+    Infrastructure:
+        style: row
+        columns: 3
+
+connectivityTest: true

@@ -5,41 +5,65 @@
     - name: 0. Fix permanent DNS
       copy:
         content: |
-          nameserver 1.1.1.1
+          nameserver 127.0.0.1
           nameserver 8.8.8.8
         dest: /etc/resolv.conf
+
     - name: 1. System update and prerequisite installation
       apt:
-        name: [apt-transport-https, ca-certificates, curl, software-properties-common, python3-pip]
+        name: 
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - python3-docker
+          - docker.io
+          - docker-compose-v2
         update_cache: yes
         state: present
 
-    - name: 2. Install docker
-      apt:
-        name: [docker.io, docker-compose-v2]
-        state: present
-
-    - name: 3. Free port 53 (disabling systemd-resolved)
+    - name: 2. Free port 53 (disabling systemd-resolved)
       systemd:
         name: systemd-resolved
         state: stopped
         enabled: no
 
-    - name: 4. Create folder tree
+    - name: 3. Create folder tree
       file:
         path: "{{ item }}"
         state: directory
-        owner: voxlab
-        group: voxlab
+        owner: "{{ ansible_user_name }}"
+        group: "{{ ansible_user_name }}"
+        mode: '0755'
       loop:
         - "{{ base_dir }}"
         - "{{ base_dir }}/homepage"
-        - "{{ base_dir }}/pihole"
+        - "{{ base_dir }}/pihole/etc-pihole"
+        - "{{ base_dir }}/data"
+        - "{{ base_dir }}/letsencrypt"
 
-    - name: 5. Copy docker-compose
+    - name: 4. Deploy docker-compose and configs
       template:
-        src: docker-compose.yml
-        dest: "{{ base_dir }}/docker-compose.yml"
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        owner: voxlab
+        group: voxlab
+        mode: '0644'
+      loop:
+        - { src: 'docker-compose.yml', dest: '{{ base_dir }}/docker-compose.yml' }
+        - { src: 'configs/homepage/services.yaml', dest: '{{ base_dir }}/homepage/services.yaml' }
+        - { src: 'configs/homepage/settings.yaml', dest: '{{ base_dir }}/homepage/settings.yaml' }
+        - { src: 'configs/homepage/widgets.yaml', dest: '{{ base_dir }}/homepage/widgets.yaml' }
 
-    - name: 6. Start docker stack
-      shell: "docker compose -f {{ base_dir }}/docker-compose.yml up -d"
+    - name: 5. Start docker stack
+      shell: "docker compose -f {{ base_dir }}/docker-compose.yml up -d --remove-orphans"
+
+    - name: 6. Post-install - Pi-hole configuration
+      shell: |
+        docker exec pihole pihole setpassword {{ pihole_password }}
+        docker exec pihole pihole-FTL dns add 192.168.72.130 voxlab.lan
+        docker exec pihole pihole-FTL dns add 192.168.72.130 dashboard.voxlab.lan
+        docker exec pihole pihole-FTL dns add 192.168.72.130 proxy.voxlab.lan
+        docker exec pihole pihole-FTL dns add 192.168.72.130 dns.voxlab.lan
+      failed_when: false

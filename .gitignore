@@ -1,2 +1,2 @@
 voxlab-infra/inventory.ini
-voxlab-infra/group_vars/all.yml
+voxlab-infra/group_vars/all.yaml
