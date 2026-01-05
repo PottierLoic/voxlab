@@ -1,0 +1,45 @@
+- hosts: voxlab
+  become: yes
+
+  tasks:
+    - name: 0. Fix permanent DNS
+      copy:
+        content: |
+          nameserver 1.1.1.1
+          nameserver 8.8.8.8
+        dest: /etc/resolv.conf
+    - name: 1. System update and prerequisite installation
+      apt:
+        name: [apt-transport-https, ca-certificates, curl, software-properties-common, python3-pip]
+        update_cache: yes
+        state: present
+
+    - name: 2. Install docker
+      apt:
+        name: [docker.io, docker-compose-v2]
+        state: present
+
+    - name: 3. Free port 53 (disabling systemd-resolved)
+      systemd:
+        name: systemd-resolved
+        state: stopped
+        enabled: no
+
+    - name: 4. Create folder tree
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: voxlab
+        group: voxlab
+      loop:
+        - "{{ base_dir }}"
+        - "{{ base_dir }}/homepage"
+        - "{{ base_dir }}/pihole"
+
+    - name: 5. Copy docker-compose
+      template:
+        src: docker-compose.yml
+        dest: "{{ base_dir }}/docker-compose.yml"
+
+    - name: 6. Start docker stack
+      shell: "docker compose -f {{ base_dir }}/docker-compose.yml up -d"
