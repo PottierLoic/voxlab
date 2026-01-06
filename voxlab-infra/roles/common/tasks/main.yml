@@ -30,6 +30,7 @@
     - "{{ base_dir }}/pihole/etc-pihole"
     - "{{ base_dir }}/npm/data"
     - "{{ base_dir }}/npm/letsencrypt"
+    - "{{ base_dir }}/memos"
 
 - name: Ensure Docker is started and enabled at boot
   systemd:

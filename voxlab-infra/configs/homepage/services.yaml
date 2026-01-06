@@ -8,3 +8,7 @@
         icon: nginx-proxy-manager.png
         href: "http://proxy.voxlab.lan"
         description: Reverse Proxy
+    - Memos:
+        icon: memos.png
+        href: "http://memos.voxlab.lan"
+        description: Personal notes
