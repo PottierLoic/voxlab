@@ -31,6 +31,8 @@
     - "{{ base_dir }}/npm/data"
     - "{{ base_dir }}/npm/letsencrypt"
     - "{{ base_dir }}/memos"
+    - "{{ base_dir }}/uptime-kuma"
+    - "{{ base_dir }}/portainer_data"
 
 - name: Ensure Docker is started and enabled at boot
   systemd:

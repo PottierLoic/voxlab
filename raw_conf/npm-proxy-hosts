@@ -1,3 +1,6 @@
 dashboard.voxlab.lan 192.168.72.130:3000
 proxy.voxlab.lan 192.168.72.130:81
 dns.voxlab.lan 192.168.72.130:8053
+memos.voxlab.lan 192.168.72.130:5230
+status.voxlab.lan 192.168.72.130:3001
+portainer.voxlab.lan 192.168.72.130:9000

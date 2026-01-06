@@ -12,3 +12,7 @@
         icon: memos.png
         href: "http://memos.voxlab.lan"
         description: Personal notes
+    - Portainer:
+        icon: portainer.png
+        href: "http://portainer.voxlab.lan"
+        description: Docker management

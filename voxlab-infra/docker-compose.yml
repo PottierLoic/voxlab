@@ -47,3 +47,23 @@ services:
     ports:
       - "5230:5230"
     restart: unless-stopped
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    volumes:
+      - '{{ base_dir }}/uptime-kuma:/app/data'
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - '{{ base_dir }}/portainer_data:/data'
+    ports:
+      - "9443:9443"
+      - "9000:9000"
+    restart: unless-stopped
