@@ -12,6 +12,7 @@ services:
       FTLCONF_dns_listeningMode: 'all'
     volumes:
       - '{{ base_dir }}/pihole/etc-pihole:/etc/pihole'
+    restart: unless-stopped
 
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -21,8 +22,9 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - '{{ base_dir }}/data:/data'
-      - '{{ base_dir }}/letsencrypt:/etc/letsencrypt'
+      - '{{ base_dir }}/npm/data:/data'
+      - '{{ base_dir }}/npm/letsencrypt:/etc/letsencrypt'
+    restart: unless-stopped
 
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
@@ -35,3 +37,4 @@ services:
       - "3000:3000"
     volumes:
       - '{{ base_dir }}/homepage:/app/config'
+    restart: unless-stopped

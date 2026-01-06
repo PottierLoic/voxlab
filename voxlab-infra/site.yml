@@ -1,0 +1,7 @@
+---
+- hosts: voxlab
+  become: yes
+  roles:
+    - common
+    - docker_stack
+    - pihole_config

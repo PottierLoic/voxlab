@@ -1,0 +1,7 @@
+- name: Restart Pi-hole to apply DNS
+  shell: "docker exec pihole pihole restartdns"
+
+- name: Post-install - Pi-hole configuration
+  shell: |
+    docker exec pihole pihole setpassword {{ pihole_password }}
+  failed_when: false

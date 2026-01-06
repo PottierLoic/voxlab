@@ -2,9 +2,9 @@
 - Infrastructure:
     - Pi-hole:
         icon: pi-hole.png
-        href: "http://192.168.72.130:8053/admin"
+        href: "http://dns.voxlab.lan/admin"
         description: Local DNS
     - Nginx Proxy Manager:
         icon: nginx-proxy-manager.png
-        href: "http://192.168.72.130:81"
+        href: "http://proxy.voxlab.lan"
         description: Reverse Proxy

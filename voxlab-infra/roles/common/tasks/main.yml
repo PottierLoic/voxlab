@@ -1,0 +1,38 @@
+- name: Fix permanent DNS
+  copy:
+    content: |
+      nameserver 127.0.0.1
+      nameserver 8.8.8.8
+    dest: /etc/resolv.conf
+
+- name: System update and prerequisite installation
+  apt:
+    name: [apt-transport-https, ca-certificates, curl, software-properties-common, python3-pip, python3-docker, docker.io, docker-compose-v2]
+    update_cache: yes
+    state: present
+
+- name: Free port 53 (disabling systemd-resolved)
+  systemd:
+    name: systemd-resolved
+    state: stopped
+    enabled: no
+
+- name: Create folder tree
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_user_name }}"
+    group: "{{ ansible_user_name }}"
+    mode: '0755'
+  loop:
+    - "{{ base_dir }}"
+    - "{{ base_dir }}/homepage"
+    - "{{ base_dir }}/pihole/etc-pihole"
+    - "{{ base_dir }}/npm/data"
+    - "{{ base_dir }}/npm/letsencrypt"
+
+- name: Ensure Docker is started and enabled at boot
+  systemd:
+    name: docker
+    state: started
+    enabled: yes

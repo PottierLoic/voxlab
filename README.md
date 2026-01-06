@@ -1,4 +1,10 @@
-services to add:
+
+Deploying playbook:
+```bash
+ansible-playbook -i inventory.ini site.yml -K
+```
+
+### services to add:
 
 - memos: note taking app
 - mealie or tandor: meal planning
