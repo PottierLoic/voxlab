@@ -1,7 +1,0 @@
-ansible_user_name: "voxlab"
-server_ip: "192.168.72.130"
-domain_name: "voxlab.lan"
-
-pihole_password: "voxlab"
-
-base_dir: "/home/vox/voxlab"
