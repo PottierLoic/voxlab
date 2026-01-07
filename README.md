@@ -13,6 +13,8 @@ the managed node should simply ssh accessible from the control node with sudo pr
 
 # Setup
 
+> All informations on precise configurations are in the `conf/` folder.
+
 Deploy playbook:
 ```bash
 ansible-playbook -i inventory.ini site.yml -K

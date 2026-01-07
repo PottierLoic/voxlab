@@ -1,0 +1,7 @@
+add new monitors
+
+nginx http://proxy.voxlab.lan
+pihole http://dns.voxlab.lan/admin
+portainer http://portainer.voxlab.lan
+uptime-kuma http://status.voxlab.lan
+memos http://memos.voxlab.lan
