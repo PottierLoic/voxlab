@@ -37,6 +37,7 @@ services:
       - "3000:3000"
     volumes:
       - '{{ base_dir }}/homepage:/app/config'
+      - '{{ base_dir }}/homepage/public:/app/public/images'
     restart: unless-stopped
 
   memos:

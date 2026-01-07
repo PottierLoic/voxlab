@@ -8,3 +8,4 @@
     cpu: true
     memory: true
     disk: /
+    expanded: true

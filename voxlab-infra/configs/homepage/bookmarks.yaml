@@ -1,0 +1,32 @@
+- Social Media:
+    - GitHub:
+        - icon: github.png
+          href: https://github.com/
+    - X:
+        - icon: x.png
+          href: https://x.com/
+    - YouTube:
+        - icon: youtube.png
+          href: https://www.youtube.com/
+    - Reddit:
+        - icon: reddit.png
+          href: https://www.reddit.com/r/selfhosted/
+
+- Tech & Learning:
+    - Linux Journey:
+        - icon: linux.png
+          href: https://linuxjourney.com/
+    - Firebog:
+        - icon: https://cdn-icons-png.flaticon.com/512/785/785116.png
+          href: https://firebog.net/
+
+- Games & Fun:
+    - Mathler:
+        - icon: https://cdn-icons-png.flaticon.com/512/43/43102.png
+          href: https://mathler.com
+    - Wordle:
+        - icon: https://cdn-icons-png.flaticon.com/512/709/709469.png
+          href: https://www.nytimes.com/games/wordle/index.html
+    - LoLdle:
+        - icon: https://loldle.net/favicon.ico
+          href: https://loldle.net/
