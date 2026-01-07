@@ -16,3 +16,7 @@
         icon: portainer.png
         href: "http://portainer.voxlab.lan"
         description: Docker management
+    - Uptime Kyma:
+        icon: uptime-kuma.png
+        href: "http://status.voxlab.lan"
+        description: Monitoring
