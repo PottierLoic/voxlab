@@ -1,6 +1,6 @@
-dashboard.voxlab.lan 192.168.72.130
-proxy.voxlab.lan 192.168.72.130
-dns.voxlab.lan 291.168.72.130
-memos.voxlab.lan 192.168.72.130
-status.voxlab.lan 192.168.72.130
-portainer.voxlab.lan 192.168.72.130
+dashboard.voxlab.lan 192.168.1.72
+proxy.voxlab.lan 192.168.1.72
+dns.voxlab.lan 291.168.1.72
+memos.voxlab.lan 192.168.1.72
+status.voxlab.lan 192.168.1.72
+portainer.voxlab.lan 192.168.1.72

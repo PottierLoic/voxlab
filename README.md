@@ -18,8 +18,8 @@ Deploy playbook:
 ansible-playbook -i inventory.ini site.yml -K
 ```
 
-Add proxy hosts to nginx-proxy-manager (raw_conf/npm-proxy-hosts)
-Add pihole dns (raw_conf/pihole-dns)
+Add proxy hosts to nginx-proxy-manager (raw_conf/npm-proxy-hosts) on ip:81
+Add pihole dns (raw_conf/pihole-dns) on ip:8053
 Configure dns on devices to point to the lab (only the lab, no other dns)
 
 At this point dashboard.voxlab.lan should be accessible as well as other services configured in the playbook.
