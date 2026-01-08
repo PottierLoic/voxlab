@@ -1,0 +1,4 @@
+srv:
+  host: dockerproxy
+  port: 2375
+  proxy: true

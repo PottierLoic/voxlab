@@ -2,10 +2,15 @@ dashboard.voxlab.lan 192.168.1.72:3000
 proxy.voxlab.lan 192.168.1.72:81
 dns.voxlab.lan 192.168.1.72:8053
 memos.voxlab.lan 192.168.1.72:5230
-status.voxlab.lan 192.168.1.72:3001
 portainer.voxlab.lan 192.168.1.72:9000
+files.voxlab.lan 192.168.1.72:80
+mealie.voxlab.lan 192.168.1.72:9000
 
-ajouter ça aux proxy host https SANS LOGIN et modifier la ligne proxy_pass dans location /  pour pointer vers le service voulu (ici homepage:3000)
+
+auth.voxlb.com authelia:9091
+all the other ones but with voxlb.com
+
+add this to httos proxy hosts WITHOUT LOGIN and modify the proxy_pass line in location / to point to the desired service (here homepage:3000)
 
 ```
 set $upstream_authelia http://authelia:9091/api/verify;

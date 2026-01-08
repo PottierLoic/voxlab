@@ -62,17 +62,6 @@ services:
     networks:
       - voxlab-net
 
-  uptime-kuma:
-    image: louislam/uptime-kuma:latest
-    container_name: uptime-kuma
-    volumes:
-      - '{{ base_dir }}/uptime-kuma:/app/data'
-    ports:
-      - "3001:3001"
-    restart: unless-stopped
-    networks:
-      - voxlab-net
-
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer
@@ -150,5 +139,33 @@ services:
     restart: unless-stopped
     volumes:
       - '{{ base_dir }}/redis:/data'
+    networks:
+      - voxlab-net
+
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: always
+    environment:
+      - GLANCES_OPT=-w
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 61208:61208
+    networks:
+      - voxlab-net
+
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1
+      - NETWORKS=1
+      - SERVICES=1
+      - VERSION=1
+      - STATS=1
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
     networks:
       - voxlab-net

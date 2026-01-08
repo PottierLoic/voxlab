@@ -4,23 +4,56 @@
         icon: pi-hole.png
         href: "https://dns.voxlb.com/admin"
         description: Local DNS
+        server: srv
+        container: pihole
+        showStats: true
+        showStatus: true
     - Nginx Proxy Manager:
         icon: nginx-proxy-manager.png
         href: "https://proxy.voxlb.com"
         description: Reverse Proxy
+        server: srv
+        container: nginx-proxy-manager
+        showStats: true
+    - Filebrowser:
+        icon: filebrowser.png
+        href: "https://files.voxlb.com"
+        description: Web file browser
+        server: srv
+        container: filebrowser
+        showStats: true
+    - Authelia:
+        icon: authelia.png
+        href: "https://auth.voxlb.com"
+        description: Authentification
+        server: srv
+        container: authelia
+        showStats: true
     - Memos:
         icon: memos.png
         href: "https://memos.voxlb.com"
         description: Personal notes
+        server: srv
+        container: memos
+        showStats: true
     - Portainer:
         icon: portainer.png
         href: "https://portainer.voxlb.com"
         description: Docker management
-    - Uptime Kyma:
-        icon: uptime-kuma.png
-        href: "https://status.voxlb.com"
-        description: Monitoring
+        server: srv
+        container: portainer
+        showStats: true
     - Mealie:
         icon: mealie.png
         href: "https://mealie.voxlb.com"
         description: Recipe planner
+        server: srv
+        container: mealie
+        showStats: true
+    - Glances:
+        icon: glances.png
+        href: "https://glances.voxlb.com"
+        description: CPU/RAM usage
+        server: srv
+        container: glances
+        showStats: true

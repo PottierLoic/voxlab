@@ -3,6 +3,7 @@ title: VoxLab Dashboard
 
 base: https://dashboard.voxlb.com
 
+proxied: true
 hideHost: true
 allowIframe: true
 disableHostname: false
