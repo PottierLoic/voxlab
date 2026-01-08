@@ -20,3 +20,7 @@
         icon: uptime-kuma.png
         href: "http://status.voxlab.lan"
         description: Monitoring
+    - Mealie:
+        icon: mealie.png
+        href: "http://mealie.voxlab.lan"
+        description: Recipe planner

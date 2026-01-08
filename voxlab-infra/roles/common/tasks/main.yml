@@ -33,6 +33,9 @@
     - "{{ base_dir }}/memos"
     - "{{ base_dir }}/uptime-kuma"
     - "{{ base_dir }}/portainer_data"
+    - "{{ base_dir }}/mealie/data"
+    - "{{ base_dir }}/mealie/db"
+    - "{{ base_dir }}/filebrowser"
 
 - name: Ensure Docker is started and enabled at boot
   systemd:

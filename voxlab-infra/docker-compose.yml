@@ -68,3 +68,42 @@ services:
       - "9443:9443"
       - "9000:9000"
     restart: unless-stopped
+
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest
+    container_name: mealie
+    ports:
+      - 9925:9000
+    volumes:
+      - '{{ base_dir }}/mealie/data:/app/data'
+    environment:
+      - ALLOW_REGISTRATION=true
+      - BASE_URL=http://{{ server_ip }}:9925
+      - DB_ENGINE=postgres
+      - POSTGRES_USER=mealie
+      - POSTGRES_PASSWORD={{ mealie_db_password }}
+      - POSTGRES_SERVER=mealie-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=mealie
+    restart: unless-stopped
+
+  mealie-db:
+    image: postgres:15-alpine
+    container_name: mealie-db
+    restart: always
+    volumes:
+      - '{{ base_dir }}/mealie/db:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_USER=mealie
+      - POSTGRES_PASSWORD={{ mealie_db_password }}
+      - POSTGRES_DB=mealie
+
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - /:/srv
+      - '{{ base_dir }}/filebrowser/filebrowser.db:/database.db'
