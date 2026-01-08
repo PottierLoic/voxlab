@@ -2,25 +2,25 @@
 - Infrastructure:
     - Pi-hole:
         icon: pi-hole.png
-        href: "http://dns.voxlab.lan/admin"
+        href: "https://dns.voxlb.com/admin"
         description: Local DNS
     - Nginx Proxy Manager:
         icon: nginx-proxy-manager.png
-        href: "http://proxy.voxlab.lan"
+        href: "https://proxy.voxlb.com"
         description: Reverse Proxy
     - Memos:
         icon: memos.png
-        href: "http://memos.voxlab.lan"
+        href: "https://memos.voxlb.com"
         description: Personal notes
     - Portainer:
         icon: portainer.png
-        href: "http://portainer.voxlab.lan"
+        href: "https://portainer.voxlb.com"
         description: Docker management
     - Uptime Kyma:
         icon: uptime-kuma.png
-        href: "http://status.voxlab.lan"
+        href: "https://status.voxlb.com"
         description: Monitoring
     - Mealie:
         icon: mealie.png
-        href: "http://mealie.voxlab.lan"
+        href: "https://mealie.voxlb.com"
         description: Recipe planner

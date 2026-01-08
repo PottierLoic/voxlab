@@ -1,3 +1,8 @@
+networks:
+  voxlab-net:
+    name: voxlab-net
+    driver: bridge
+
 services:
   pihole:
     container_name: pihole
@@ -13,6 +18,8 @@ services:
     volumes:
       - '{{ base_dir }}/pihole/etc-pihole:/etc/pihole'
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -25,12 +32,14 @@ services:
       - '{{ base_dir }}/npm/data:/data'
       - '{{ base_dir }}/npm/letsencrypt:/etc/letsencrypt'
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     environment:
-      - HOMEPAGE_ALLOWED_HOSTS={{ server_ip }}:3000,dashboard.voxlab.lan
+      - HOMEPAGE_ALLOWED_HOSTS={{ server_ip }}:3000,dashboard.voxlab.lan,dashboard.voxlb.com
       - PUID=1000
       - PGID=1000
     ports:
@@ -39,6 +48,8 @@ services:
       - '{{ base_dir }}/homepage:/app/config'
       - '{{ base_dir }}/homepage/public:/app/public/images'
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   memos:
     image: neosmemo/memos:stable
@@ -48,6 +59,8 @@ services:
     ports:
       - "5230:5230"
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   uptime-kuma:
     image: louislam/uptime-kuma:latest
@@ -57,6 +70,8 @@ services:
     ports:
       - "3001:3001"
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   portainer:
     image: portainer/portainer-ce:latest
@@ -68,6 +83,8 @@ services:
       - "9443:9443"
       - "9000:9000"
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   mealie:
     image: ghcr.io/mealie-recipes/mealie:latest
@@ -86,17 +103,21 @@ services:
       - POSTGRES_PORT=5432
       - POSTGRES_DB=mealie
     restart: unless-stopped
+    networks:
+      - voxlab-net
 
   mealie-db:
     image: postgres:15-alpine
     container_name: mealie-db
-    restart: always
+    restart: unless-stopped
     volumes:
       - '{{ base_dir }}/mealie/db:/var/lib/postgresql/data'
     environment:
       - POSTGRES_USER=mealie
       - POSTGRES_PASSWORD={{ mealie_db_password }}
       - POSTGRES_DB=mealie
+    networks:
+      - voxlab-net
 
   filebrowser:
     image: filebrowser/filebrowser:latest
@@ -107,3 +128,27 @@ services:
     volumes:
       - /:/srv
       - '{{ base_dir }}/filebrowser/filebrowser.db:/database.db'
+    networks:
+      - voxlab-net
+
+  authelia:
+    image: authelia/authelia:latest
+    container_name: authelia
+    restart: unless-stopped
+    volumes:
+      - '{{ base_dir }}/authelia/config:/config'
+    environment:
+      - TZ=Europe/Paris
+    depends_on:
+      - redis
+    networks:
+      - voxlab-net
+
+  redis:
+    image: redis:latest
+    container_name: authelia-redis
+    restart: unless-stopped
+    volumes:
+      - '{{ base_dir }}/redis:/data'
+    networks:
+      - voxlab-net

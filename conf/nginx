@@ -4,3 +4,32 @@ dns.voxlab.lan 192.168.1.72:8053
 memos.voxlab.lan 192.168.1.72:5230
 status.voxlab.lan 192.168.1.72:3001
 portainer.voxlab.lan 192.168.1.72:9000
+
+ajouter ça aux proxy host https SANS LOGIN et modifier la ligne proxy_pass dans location /  pour pointer vers le service voulu (ici homepage:3000)
+
+```
+set $upstream_authelia http://authelia:9091/api/verify;
+
+location /api/verify {
+    proxy_pass $upstream_authelia;
+    proxy_set_header Host $host;
+    proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+location / {
+    auth_request /api/verify;
+    error_page 401 = @error401;
+    proxy_pass http://homepage:3000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+
+location @error401 {
+    return 302 https://auth.voxlb.com/?rd=$scheme://$http_host$request_uri;
+}
+```

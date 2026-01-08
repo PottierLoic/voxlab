@@ -2,7 +2,23 @@ ansible_user_name: "ANSIBLE_USERNAME"
 server_ip: "IP_ADDRESS"
 domain_name: "DOMAIN_NAME"
 
+clouflare_token: "CLOUDFLARE_API_KEY"
+
+authelia_jwt-secret: "KEY"
+authelia_session_secret: "KEY"
+authelia_storage_key: "KEY"
+
+authelia_admin_username: USERNAME
+authelia_admin_password_hash: 'KEY'
+authelia_admin_email: 'MAIL'
+
+smtp_host: "HOST"
+smtp_port: "PORT"
+smtp_username: "MAIL"
+smtp_password: "PWD"
+smtp_sender: "MAIL"
+
 pihole_password: "PWD"
 mealie_db_password: "PWD"
 
-base_dir: "/home/vox/voxlab"
+base_dir: "BASE_DIR"

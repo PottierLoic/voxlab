@@ -12,7 +12,7 @@
       - { src: 'configs/homepage/widgets.yaml', dest: '{{ base_dir }}/homepage/widgets.yaml' }
       - { src: 'configs/homepage/bookmarks.yaml', dest: '{{ base_dir }}/homepage/bookmarks.yaml' }
 
-- name: Ensure public directory exists
+- name: Ensure homepage public directory exists
   file:
     path: "{{ base_dir }}/homepage/public/images"
     state: directory
@@ -20,7 +20,7 @@
     group: "{{ ansible_user_name }}"
     mode: '0755'
 
-- name: Deploy background image
+- name: Deploy background image tp homepage public directory
   copy:
     src: 'configs/homepage/public/background.jpg'
     dest: '{{ base_dir }}/homepage/public/images/background.jpg'
@@ -28,6 +28,24 @@
     group: "{{ ansible_user_name }}"
     mode: '0644'
 
+- name: Create authelia configurations
+  file:
+    path: "{{ base_dir }}/{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - authelia/config
+    - redis
+
+- name: Deploy authelia configuration file
+  template:
+    src: templates/authelia_config.yml
+    dest: "{{ base_dir }}/authelia/config/configuration.yml"
+
+- name: Create Authelia users database
+  template:
+    src: templates/authelia_users_database.yml
+    dest: "{{ base_dir }}/authelia/config/users_database.yml"
 
 - name: Start docker stack
   shell: "docker compose -f {{ base_dir }}/docker-compose.yml up -d --remove-orphans"

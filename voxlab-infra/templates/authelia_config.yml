@@ -1,0 +1,44 @@
+server:
+  address: 'tcp://0.0.0.0:9091/'
+
+storage:
+  local:
+    path: /config/db.sqlite3
+  encryption_key: {{ authelia_storage_key }}
+
+authentication_backend:
+  file:
+    path: /config/users_database.yml
+
+identity_validation:
+  reset_password:
+    jwt_secret: {{ authelia_jwt_secret }}
+
+notifier:
+  disable_startup_check: true
+  smtp:
+    address: 'submission://{{ smtp_host }}:{{ smtp_port }}'
+    username: {{ smtp_username }}
+    password: {{ smtp_password }}
+    sender: VoxLab Admin <{{ smtp_sender }}>
+
+session:
+  name: authelia_session
+  same_site: lax
+  cookies:
+    - name: authelia_session
+      domain: {{ domain }}
+      authelia_url: 'https://auth.{{ domain }}'
+      default_redirection_url: 'https://dashboard.{{ domain }}'
+  secret: {{ authelia_session_secret }}
+  expiration: 1h
+  inactivity: 5m
+  redis:
+    host: authelia-redis
+    port: 6379
+
+access_control:
+  default_policy: deny
+  rules:
+    - domain: "*.{{ domain }}"
+      policy: one_factor

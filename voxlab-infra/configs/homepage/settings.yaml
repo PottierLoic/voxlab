@@ -1,7 +1,7 @@
 ---
 title: VoxLab Dashboard
 
-base: http://dashboard.voxlab.lan
+base: https://dashboard.voxlb.com
 
 hideHost: true
 allowIframe: true
