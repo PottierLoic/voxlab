@@ -26,10 +26,6 @@ Configure dns on devices to point to the lab (only the lab, no other dns)
 
 At this point dashboard.voxlab.lan should be accessible as well as other services configured in the playbook.
 
-Configure the monitor in uptime kuma for eachh service.
-If they do not correspond, modify the slugs in the paybook and re-deploy to get uptime-kuma widgets working in the dashboard.
-
-
 ### services to add:
 
 - memos: note taking app
