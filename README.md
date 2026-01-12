@@ -26,6 +26,10 @@ Configure dns on devices to point to the lab (only the lab, no other dns)
 
 At this point dashboard.voxlab.lan should be accessible as well as other services configured in the playbook.
 
+filebrowser first password is in the logs 
+`docker logs filebrowser`
+should be changed at first login.
+
 ### services to add:
 
 - memos: note taking app

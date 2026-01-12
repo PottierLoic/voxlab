@@ -19,6 +19,7 @@ smtp_password: "PWD"
 smtp_sender: "MAIL"
 
 pihole_password: "PWD"
-mealie_db_password: "PWD"
+
+filebrowser_password: "PWD"
 
 base_dir: "BASE_DIR"

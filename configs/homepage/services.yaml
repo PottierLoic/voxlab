@@ -43,13 +43,6 @@
         server: srv
         container: portainer
         showStats: true
-    - Mealie:
-        icon: mealie.png
-        href: "https://mealie.voxlb.com"
-        description: Recipe planner
-        server: srv
-        container: mealie
-        showStats: true
     - Glances:
         icon: glances.png
         href: "https://glances.voxlb.com"
