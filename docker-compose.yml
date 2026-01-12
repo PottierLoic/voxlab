@@ -175,16 +175,17 @@ services:
   #   container_name: minecraft
   #   ports:
   #     - "25565:25565"
+  #   stdin_open: true
+  #   tty: true
   #   environment:
   #     EULA: "TRUE"
   #     TYPE: "FORGE"
   #     VERSION: "1.21.1"
   #     MEMORY: "8G"
-  #     ENABLE_RCON: "true"
-  #     RCON_PASSWORD: "change-me"
   #     TZ: "Europe/Paris"
   #   volumes:
   #     - ./minecraft-data:/data
   #   restart: unless-stopped
   #   networks:
   #     - voxlab-net
+  
