@@ -4,5 +4,6 @@
   roles:
     - common
     - docker_stack
-    - pihole_config
-    - ip
+    - homepage
+    - authelia
+    - pihole
