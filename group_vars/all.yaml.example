@@ -1,6 +1,6 @@
 ansible_user_name: "ANSIBLE_USERNAME"
 server_ip: "IP_ADDRESS"
-domain_name: "DOMAIN_NAME"
+domain: "DOMAIN_NAME"
 
 clouflare_token: "CLOUDFLARE_API_KEY"
 
