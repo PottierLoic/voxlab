@@ -50,3 +50,10 @@
         server: srv
         container: glances
         showStats: true
+    - Jellyfin:
+        icon: jellyfin.png
+        href: "https://tv.voxlb.com"
+        description: Media player
+        server: srv
+        container: jellyfin
+        showStats: true
